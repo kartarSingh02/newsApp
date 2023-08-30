@@ -7,6 +7,7 @@ export default class App extends Component {
     return (
       <div>
         <p>This is class componenet</p>
+        hey these are the changes i have made.
       </div>
     )
   }
