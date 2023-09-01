@@ -26,6 +26,7 @@ export class News extends Component {
       <div className="container my-3">
         <h1>NewsDekho - Top Headlines</h1>
           <div className='row'>
+          {/* here we are using the map its kind of iterator which iterates through each items */}
             {this.state.articles.map((element)=>{
                 return  <div className='col-md-4' key={element.url}>
               <NewsItem title={element.title?element.title:""} description={element.description?element.description:""} imageUrl={element.urlToImage} newsUrl={element.url} />
