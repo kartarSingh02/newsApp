@@ -10,7 +10,7 @@ const News = (props) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
-  // document.title = `${this.captializeFirstLetter(props.category)} - NewsDekho`;
+  
 
   const captializeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -34,7 +34,9 @@ const News = (props) => {
   }
 
   useEffect(() => {
+    document.title = `${captializeFirstLetter(props.category)} - NewsDekho`;
     updateNews();
+    // eslint-disable-next-line
   }, [])
   
 
@@ -53,8 +55,9 @@ const News = (props) => {
 
   const fetchMoreData = async() => {
     // this.setState({page: this.state.page + 1 });
+    
+    const url =`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page+1}&pageSize=${props.pageSize}`; 
     setPage(page+1);
-    const url =`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`
     let data = await fetch(url);
     let parsedData=await data.json();
     console.log(parsedData);
@@ -65,7 +68,7 @@ const News = (props) => {
 
     return (
       <>
-        <h1 className='text-center' style={{margin:'30px 0'}}>NewsDekho - Top {captializeFirstLetter(props.category)} Headlines</h1>
+        <h1 className='text-center' style={{margin:'30px 0', marginTop:'90px'}}>NewsDekho - Top {captializeFirstLetter(props.category)} Headlines</h1>
         {loading && <Spinner/>}
 
         {/* adding infinite scroll */}
